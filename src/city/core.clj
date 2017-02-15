@@ -5,7 +5,18 @@
 (defn setup []
   ; setup function returns initial state. It contains
   ; circle color and position.
-  [])
+  (def buildings-cnt 5)
+  
+  (vec (loop [ cnt buildings-cnt 
+          buildings '([ 20 200 50 100])]
+    (if (= 0 cnt) 
+      buildings 
+      (recur (dec cnt) 
+             (conj buildings 
+                   [(* cnt 70) 
+                    200 
+                    50 
+                    (+ (rand 100) 100)]))))))
 
 (defn draw [state]
   ; Clear the sketch by filling it with black color.
@@ -15,7 +26,7 @@
   (q/fill 255 255 255)
 
   ; Draw a rectangle
-  (doseq [rect [[250 250 70 80] [300 250 70 60]]] 
+  (doseq [rect state] 
     (apply q/rect rect))
 )
 
