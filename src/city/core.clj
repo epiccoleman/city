@@ -10,10 +10,13 @@
 (defn draw [state]
   ; Clear the sketch by filling it with black color.
   (q/background 0 0 0)
+
   ; Set shape color.
   (q/fill 255 255 255)
+
   ; Draw a rectangle
-  (q/rect 250 250 70 80)
+  (doseq [rect [[250 250 70 80] [300 250 70 60]]] 
+    (apply q/rect rect))
 )
 
 (q/defsketch city
